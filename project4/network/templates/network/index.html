@@ -1,0 +1,76 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+    {% if user.is_authenticated %}
+    <div id="main" style="display:flex; justify-content:center;  height:100vh;">
+        <div>
+            <form id="create-post-form" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <textarea style="width:300px; padding:10px; resize:none;" rows=6 id="create-post-text" placeholder="Write your post here..."></textarea>
+                <input type="submit" class="create-post-btn" value="POST" style="width:80px; padding:4px; cursor:pointer;">
+            </form>
+        </div>
+
+        <div id="posts-main" style="display:flex; justify-content:center; flex-direction:column;">
+
+        </div>
+    </div>
+
+
+    <div id="edit-post" style="display:flex; justify-content:center;  height:100vh;">
+        <div>
+            <form id="edit-post-form" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <textarea id="post-area" style="width:300px; padding:10px; resize:none;" rows=6 id="create-post-text" placeholder="Write your post here..."></textarea>
+                <input type="submit" class="edit-post-btn" value="Save" style="width:80px; padding:4px; cursor:pointer;">
+            </form>
+        </div>
+
+    </div>
+
+    <div id="profile">
+        <div id="profile-cont" style="display:flex; flex-direction:column; border-radius:8px;">
+        </div>
+        <div id="posts-profile" style="display:flex; justify-content:center; flex-direction:column;">         
+        </div>     
+    </div>
+        
+    
+
+    <div id="all-posts">
+        All Posts
+       
+        <div id="posts" style="display:flex; justify-content:center; flex-direction:column;">
+
+        </div>
+    </div>
+
+    <div id="following">
+        Following
+
+        <div id="posts-following" style="display:flex; justify-content:center; flex-direction:column;">
+
+        </div>
+    </div>
+
+
+    {% else %}
+    <div id="profile">
+        <div id="profile-cont" style="display:flex; flex-direction:column; border-radius:8px;">
+        </div>
+        <div id="posts-profile" style="display:flex; justify-content:center; flex-direction:column;">         
+        </div>     
+    </div>
+
+    <div id="main" style="display:flex; justify-content:center;  height:100vh;">
+
+        <div id="posts-main" style="display:flex; justify-content:center; flex-direction:column;">
+
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+    <script> var userId = {{ user.id|default:"null" }}; </script>
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}
