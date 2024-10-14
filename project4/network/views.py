@@ -122,7 +122,7 @@ def get_posts(request, type):
     print(posts[0])
     
     user = request.user.id or 0
-    print("jebemti mater", user)
+    print( user)
     if (user):
         serialized_posts = [post.serialize_user(request.user) for post in posts]
     else:
@@ -170,7 +170,7 @@ def follow(request, profile_id):
 def profile(request, profile_id):
     profile = User.objects.get(pk=profile_id)
     
-    print("bkt mazo",request.user)
+    print(request.user)
     user = request.user.id or 0
     if(user):
         is_following = Followers.objects.filter(profile=profile, follower=request.user).exists()
